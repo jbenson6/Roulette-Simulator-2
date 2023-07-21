@@ -113,12 +113,6 @@ namespace RouletteSimulator.Classes
                                 currentBalance -= kp.Value;
                             }
                         }
-                        else if (values.Contains(numberRolled.ToString()))
-                        {
-                            string multiplier = kp.Key.ToString().Substring(1, 2);
-                            multiplier = multiplier.TrimStart('0');
-                            currentBalance += kp.Value * int.Parse(multiplier);
-                        }
                         else if (values[0] == "Doz")
                         {
                             int dozenSelected = int.Parse(values[1]);
@@ -175,10 +169,16 @@ namespace RouletteSimulator.Classes
                         }
                         else if (values[0] == "Even")
                         {
-                            if (numberRolled % 2 != 0)
+                            if (numberRolled != 0 && numberRolled % 2 != 0)
                                 currentBalance -= kp.Value;
                             else
                                 currentBalance += kp.Value;
+                        }
+                        else if (values.Contains(numberRolled.ToString()))
+                        {
+                            string multiplier = kp.Key.ToString().Substring(1, 2);
+                            multiplier = multiplier.TrimStart('0');
+                            currentBalance += kp.Value * int.Parse(multiplier);
                         }
                         else
                         {

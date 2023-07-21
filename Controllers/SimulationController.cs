@@ -31,13 +31,13 @@ namespace Roulette_Simulator_2.Controllers
             }
 
             //Populate Bets Placed
-            bets[Wager.X02_Doz_2] = 7;
-            bets[Wager.X02_Doz_3] = 7;
-            bets[Wager.X08_1_2_4_5] = 2;
-            bets[Wager.X08_7_8_10_11] = 2;
+            bets[Wager.X02_Doz_2] = 105;
+            bets[Wager.X02_Doz_3] = 105;
+            bets[Wager.X08_1_2_4_5] = 30;
+            bets[Wager.X08_7_8_10_11] = 30;
 
 
-            simulation.TotalBet = 18;
+            simulation.TotalBet = 270;
 
             List<BettingPattern> bettingPatterns = new List<BettingPattern>();
             bettingPatterns.Add(new BettingPattern(bets));

@@ -35,20 +35,21 @@ namespace Roulette_Simulator_2.Controllers
             #region Systems
 
             //Advance Tie Fighter
-            bets[Wager.X02_Doz_2] = 105;
-            bets[Wager.X02_Doz_3] = 105;
-            bets[Wager.X08_1_2_4_5] = 30;
-            bets[Wager.X08_7_8_10_11] = 30;
+            //bets[Wager.X02_Doz_2] = 105;
+            //bets[Wager.X02_Doz_3] = 105;
+            //bets[Wager.X08_1_2_4_5] = 30;
+            //bets[Wager.X08_7_8_10_11] = 30;
+            //simulation.TotalBet = 270;
 
 
-            //bets[Wager.X02_Doz_2] = 75;
-            //bets[Wager.X02_Doz_3] = 75;
-            //bets[Wager.X08_13_14_16_17] = 25;
-            //bets[Wager.X08_17_18_20_21] = 25;
-            //bets[Wager.X08_19_20_22_23] = 25;
+            bets[Wager.X02_Doz_1] = 15;
+            bets[Wager.X02_Doz_3] = 15;
+            bets[Wager.X08_13_14_16_17] = 5;
+            bets[Wager.X08_17_18_20_21] = 5;
+            bets[Wager.X08_19_20_22_23] = 5;
+            simulation.TotalBet = 45;
 
             #endregion
-            simulation.TotalBet = 270;
 
             List<BettingPattern> bettingPatterns = new List<BettingPattern>();
             bettingPatterns.Add(new BettingPattern(bets));

@@ -76,8 +76,10 @@ namespace RouletteSimulator.Classes
                 _totalWinnings += _currentBalance - _startingBalance;
 
             }
-            avgSpinsWin /= _wins;
-            avgSpinsLoss /= _losses;
+            if(_wins > 0)
+                avgSpinsWin /= _wins;
+            if(_losses > 0)
+                avgSpinsLoss /= _losses;
           
             _percentSuccess = ((float)_wins / (float)_desiredTrials).ToString("0.00%");
             _percentLoss = ((float)_totalWinnings / (float) _totalWagered).ToString("0.00%");

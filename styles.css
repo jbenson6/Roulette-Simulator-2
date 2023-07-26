@@ -1,0 +1,602 @@
+﻿body {
+    font-family: Arial;
+    color: #fff;
+    background-color: #5c317c;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+#rouletteLayoutDiv {
+    position: absolute;
+    z-index: 0;
+    width: 960px;
+    height: 750px;
+}
+
+#totalsTitleDiv {
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 57px;
+}
+
+#winLossTitleDiv {
+    top: 425px;
+    left: 0px;
+    width: 800px;
+    height: 30px;
+}
+
+#chartTitleDiv {
+    top: 575px;
+    left: 0px;
+    width: 800px;
+    height: 30px;
+}
+
+#equityTitleDiv {
+    top: 775px;
+    left: 0px;
+    width: 800px;
+    height: 30px;
+}
+
+#configurationDiv {
+    position: absolute;
+    z-index: 11;
+    top: 930px;
+    left: 15px;
+    width: 500px;
+    height: 100px;
+}
+
+#betInfoDiv {
+    position: absolute;
+    z-index: 30;
+    left: 810px;
+    top: 65px;
+    width: 150px;
+    height: 200px;
+}
+
+#betInfoBetHeaderDiv {
+    color: #fff;
+    font-size: 16px;
+    background-color: #3b0069;
+    padding: 8px;
+}
+
+#betInfoBetPaysDiv {
+    color: #fff;
+    font-size: 12px;
+    background-color: #7b41a6;
+    padding: 5px;
+}
+
+#betInfoBetCurrentBetDiv {
+    color: #fff;
+    font-size: 12px;
+    background-color: #7b41a6;
+    padding: 5px;
+}
+
+#betInfoBetWinningPayDiv {
+    color: #fff;
+    font-size: 12px;
+    background-color: #7b41a6;
+    padding: 5px;
+}
+
+#totalBetAmountHeaderDiv {
+    left: 105px;
+    top: 2px;
+}
+
+#evHeaderDiv {
+    left: 320px;
+    top: 2px;
+}
+
+#compsHeaderDiv {
+    left: 545px;
+    top: 2px;
+}
+
+#totalBetAmountDiv {
+    left: 105px;
+    top: 28px;
+}
+
+#evDiv {
+    left: 320px;
+    top: 28px;
+    color: #c00;
+}
+
+#compsDiv {
+    left: 545px;
+    top: 28px;
+}
+
+#linkDiv {
+    position: absolute;
+    left: 15px;
+    top: 940px;
+    z-index: 300;
+    color: #fff;
+    font-size: 12px;
+}
+
+#wager-config-textbox {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    width: 700px;
+    height: 40px;
+    font-size: 16px;
+}
+
+#clearButton {
+    position: absolute;
+    z-index: 30;
+    top: 15px;
+    left: 755px;
+}
+
+#undoButton {
+    position: absolute;
+    z-index: 30;
+    top: 15px;
+    left: 710px;
+}
+
+#doubleButton {
+    position: absolute;
+    z-index: 30;
+    top: 300px;
+    left: 730px;
+}
+
+#halveButton {
+    position: absolute;
+    z-index: 30;
+    top: 335px;
+    left: 730px;
+}
+
+#chartButton {
+    position: absolute;
+    z-index: 30;
+    top: 465px;
+    left: 730px;
+}
+
+#bracesButton {
+    position: absolute;
+    z-index: 30;
+    top: 865px;
+    left: 730px;
+}
+
+#jackaceLabelDiv {
+    position: absolute;
+    z-index: 999;
+    top: 535px;
+    left: 730px;
+}
+
+#coverageLabelDiv {
+    position: absolute;
+    z-index: 99;
+    top: 740px;
+    left: 635px;
+    font-size: 12px;
+}
+
+#coverage-div {
+    position: absolute;
+    z-index: 99;
+    top: 613px;
+    left: 650px;
+    height: 150px;
+    width: 150px;
+    background-color: #222;
+}
+
+    #coverage-div table {
+        margin: 0px;
+        width: 100%;
+        height: 150px;
+    }
+
+    #coverage-div tr:nth-child(even) {
+        background-color: #111;
+    }
+
+    #coverage-div td {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 2px;
+    }
+
+    #coverage-div th {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 1px;
+    }
+
+#wheelToggleImage {
+    position: absolute;
+    z-index: 15;
+    width: 47px;
+    height: 30px;
+    left: 735px;
+    top: 370px;
+}
+
+#chartContainer {
+    position: absolute;
+    top: 605px;
+    left: 10px;
+    height: 150px;
+}
+
+.link-hidden {
+    display: none;
+}
+
+.configuration-hidden {
+    display: none;
+}
+
+.bet-info-hidden {
+    display: none;
+}
+
+.disclaimer {
+    color: #ccc;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.chip-position-0 {
+    left: 5px;
+    top: 300px;
+}
+
+.chip-position-1 {
+    left: 40px;
+    top: 300px;
+}
+
+.chip-position-2 {
+    left: 5px;
+    top: 335px;
+}
+
+.chip-position-3 {
+    left: 40px;
+    top: 335px;
+}
+
+.chip-position-4 {
+    left: 5px;
+    top: 370px;
+}
+
+.chip-position-5 {
+    left: 40px;
+    top: 370px;
+}
+
+/* .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+} */
+.totalAmountHeader {
+    position: absolute;
+    z-index: 22;
+    width: 150px;
+    height: 25px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.totalAmount {
+    position: absolute;
+    z-index: 22;
+    width: 150px;
+    height: 25px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    background-color: #150024;
+}
+
+.title-bar {
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    width: 50%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.chip-selectable {
+    position: absolute;
+    z-index: 20;
+}
+
+.chip {
+    z-index: 20;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.chip-bet {
+    position: absolute;
+}
+
+.chip-cover {
+    position: absolute;
+}
+
+.chip-cover-hidden {
+    display: none;
+}
+
+.chip-inactive {
+}
+
+.chip-text {
+    position: relative;
+    z-index: 30;
+    width: 30px;
+    height: 30px;
+    top: -23px;
+    left: 0px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.0001);
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #fff;
+}
+
+.highlight {
+    position: absolute;
+    z-index: 99;
+    width: 52px;
+    height: 76px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.highlight-0-0 {
+    width: 40px;
+    height: 228px;
+}
+
+.highlight-00-0 {
+    width: 40px;
+    height: 228px;
+}
+
+.highlight-00-00 {
+    width: 40px;
+    height: 114px;
+}
+
+.highlight-0-0-cap {
+    position: absolute;
+    z-index: 88;
+    width: 0;
+    height: 0;
+    top: 56px;
+    left: 31px;
+    border-right: 21px solid rgba(255, 255, 255, 0.3);
+    border-top: 115px solid transparent;
+    border-bottom: 115px solid transparent;
+}
+
+.highlight-00-0-cap {
+    position: absolute;
+    z-index: 88;
+    width: 0;
+    height: 0;
+    top: 173px;
+    left: 31px;
+    border-right: 21px solid rgba(255, 255, 255, 0.3);
+    border-top: 57.5px solid transparent;
+    border-bottom: 57.5px solid transparent;
+}
+
+.highlight-00-00-cap {
+    position: absolute;
+    z-index: 88;
+    width: 0;
+    height: 0;
+    top: 58px;
+    left: 31px;
+    border-right: 21px solid rgba(255, 255, 255, 0.3);
+    border-top: 57.5px solid transparent;
+    border-bottom: 57.5px solid transparent;
+}
+
+.highlight-hidden {
+    display: none;
+}
+
+.spot-red {
+    background-color: #c00;
+}
+
+.spot-black {
+    background-color: #000;
+}
+
+.spot-green {
+    background-color: rgb(0, 188, 0);
+}
+
+.spot-hidden {
+    display: none;
+}
+
+.amt-pos {
+    color: rgb(0, 188, 0);
+}
+
+.amt-neg {
+    color: #c00;
+}
+
+.amt-0 {
+    color: #999;
+    font-style: italic;
+}
+
+.equity {
+    position: absolute;
+    width: 52px;
+    height: 30px;
+    border: 1px #fff solid;
+    overflow: hidden;
+}
+
+.equity-0 {
+    height: 90px;
+}
+
+.equity-00 {
+    height: 45px;
+}
+
+.equity div {
+    margin: 7px 5px 2px 2px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.equity-hidden {
+    display: none;
+}
+
+.win {
+    background-image: url('/assets/img/bg-black-52x30.png');
+    position: absolute;
+    width: 52px;
+    height: 30px;
+    border: 1px #fff solid;
+    overflow: hidden;
+}
+
+    .win .amt-pos {
+        color: #9f9;
+    }
+
+    .win .amt-neg {
+        color: #f99;
+    }
+
+.win-0 {
+    height: 90px;
+}
+
+.win-00 {
+    height: 45px;
+}
+
+.win-hidden {
+    display: none;
+}
+
+.win div {
+    padding: 7px 1px 1px 1px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 14px;
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+}
+
+.wheel {
+    position: absolute;
+    left: 480px;
+    top: 600px;
+    z-index: 30;
+}
+
+.wheel-spokes {
+    z-index: 35;
+}
+
+.hotspot {
+    position: absolute;
+    opacity: 0.00001;
+}
+
+.hotspot-hidden {
+    display: none;
+}
+
+.hotspot-outside-dozen {
+    width: 208px;
+    height: 52px;
+    z-index: 100;
+}
+
+.hotspot-inside {
+    width: 26px;
+    height: 38px;
+    z-index: 110;
+}
+
+.hotspot-topline {
+    width: 26px;
+    height: 19px;
+    z-index: 120;
+}
+
+.hotspot-outside-column {
+    width: 52px;
+    height: 77px;
+    z-index: 100;
+}
+
+.hotspot-outside-even-money {
+    width: 104px;
+    height: 52px;
+    z-index: 100;
+}
+
+.hotspot-r {
+    background-color: #f00;
+}
+
+.hotspot-g {
+    background-color: #0f0;
+}

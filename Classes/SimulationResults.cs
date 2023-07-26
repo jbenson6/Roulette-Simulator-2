@@ -11,8 +11,11 @@
         private string percentSuccess;
         private double spinsWin;
         private double spinsLoss;
+        private int chambaLosses;
+        private double avgBet;
+        private double avgWalkAway;
 
-        public SimulationResults(int desiredTrials, long totalWinnings, long totalWagered, string percentLoss, int wins, int losses, string percentSuccess, double spinsWin, double spinsLoss)
+        public SimulationResults(int desiredTrials, long totalWinnings, long totalWagered, string percentLoss, int wins, int losses, string percentSuccess, double spinsWin, double spinsLoss, int chambaLosses, double avgBet, double avgWalkAway)
         {
             this.DesiredTrials = desiredTrials;
             this.TotalWinnings = totalWinnings;
@@ -23,6 +26,9 @@
             this.PercentSuccess = percentSuccess;
             this.spinsWin = spinsWin;
             this.SpinsLoss = spinsLoss;
+            this.ChambaLosses = chambaLosses;
+            this.AvgBet = avgBet;
+            this.AvgWalkAway = avgWalkAway;
         }
 
         public int DesiredTrials { get => desiredTrials; set => desiredTrials = value; }
@@ -34,5 +40,8 @@
         public string PercentSuccess { get => percentSuccess; set => percentSuccess = value; }
         public double SpinsWin { get => spinsWin; set => spinsWin = value; }
         public double SpinsLoss { get => spinsLoss; set => spinsLoss = value; }
+        public int ChambaLosses { get => chambaLosses; set => chambaLosses = value; }
+        public double AvgBet { get => avgBet; set => avgBet = value; }
+        public double AvgWalkAway { get => avgWalkAway; set => avgWalkAway = value; }
     }
 }

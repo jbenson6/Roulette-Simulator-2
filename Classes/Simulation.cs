@@ -20,6 +20,9 @@ namespace RouletteSimulator.Classes
         private double _avgBet;
         private double _avgWalkAwayMoney;
         private long _totalSpins;
+        private int _quickestLoss;
+        private int _longestLoss;
+
         int[] Red = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
         int[] Black = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
 
@@ -46,6 +49,8 @@ namespace RouletteSimulator.Classes
             _avgBet = 0;
             _avgWalkAwayMoney = 0;
             _totalSpins = 0;
+            _quickestLoss = int.MaxValue;
+            _longestLoss = int.MinValue;
 
             int lastIndex;
             if (BettingSystem.WheelType == WheelType.DoubleZero)
@@ -71,7 +76,8 @@ namespace RouletteSimulator.Classes
                 {
                     _losses++;
                     avgSpinsLoss += spins;
-
+                    _quickestLoss = Math.Min(_quickestLoss, spins);
+                    _longestLoss = Math.Max(_longestLoss, spins);
                 }
                 else if (_currentBalance >= _winningThreshold)
                 {
@@ -92,7 +98,7 @@ namespace RouletteSimulator.Classes
 
             _percentSuccess = ((float)_wins / (float)_desiredTrials).ToString("0.00%");
             _percentLoss = ((float)_totalWinnings / (float)_totalWagered).ToString("0.00%");
-            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, 0, _avgBet, _avgWalkAwayMoney);
+            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, 0, _avgBet, _avgWalkAwayMoney, _quickestLoss, _longestLoss);
 
         }
 

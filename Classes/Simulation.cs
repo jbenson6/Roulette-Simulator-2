@@ -66,13 +66,14 @@ namespace RouletteSimulator.Classes
                 Random random = new Random();
                 int _currentBalance = _startingBalance;
                 int spins = 0;
-                while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold)
+                while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold 
+                    && _currentBalance >= BettingSystem.BettingTiers[0].BettingPatterns[0].TotalBet)
                 {
                     spins++;
                     int numberRolled = random.Next(0, lastIndex);
                     _currentBalance = CalculateWinnings(numberRolled, _currentBalance);
                 }
-                if (_currentBalance <= _losingThreshold)
+                if (_currentBalance <= _losingThreshold || _currentBalance < BettingSystem.BettingTiers[0].BettingPatterns[0].TotalBet)
                 {
                     _losses++;
                     avgSpinsLoss += spins;

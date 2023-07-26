@@ -18,8 +18,8 @@ namespace RouletteSimulator.Classes
         private string _percentLoss;
         private int _totalBet;
         private double _avgBet;
-        private double _avgWalkAway;
-
+        private double _avgWalkAwayMoney;
+        private long _totalSpins;
         int[] Red = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
         int[] Black = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
 
@@ -43,6 +43,9 @@ namespace RouletteSimulator.Classes
             _losses = 0;
             _totalWagered = 0;
             _totalWinnings = 0;
+            _avgBet = 0;
+            _avgWalkAwayMoney = 0;
+            _totalSpins = 0;
 
             int lastIndex;
             if (BettingSystem.WheelType == WheelType.DoubleZero)
@@ -58,7 +61,6 @@ namespace RouletteSimulator.Classes
                 Random random = new Random();
                 int _currentBalance = _startingBalance;
                 int spins = 0;
-
                 while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold)
                 {
                     spins++;
@@ -69,34 +71,41 @@ namespace RouletteSimulator.Classes
                 {
                     _losses++;
                     avgSpinsLoss += spins;
+
                 }
                 else if (_currentBalance >= _winningThreshold)
                 {
                     _wins++;
                     avgSpinsWin += spins;
                 }
-
+                _totalSpins += spins;
                 _totalWinnings += _currentBalance - _startingBalance;
 
             }
-            if(_wins > 0)
+            if (_wins > 0)
                 avgSpinsWin /= _wins;
-            if(_losses > 0)
+            if (_losses > 0)
                 avgSpinsLoss /= _losses;
-          
+
+            _avgBet = _totalWagered / _totalSpins;
+            _avgWalkAwayMoney /= _desiredTrials;
+
             _percentSuccess = ((float)_wins / (float)_desiredTrials).ToString("0.00%");
-            _percentLoss = ((float)_totalWinnings / (float) _totalWagered).ToString("0.00%");
-            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, 0, _avgBet, _avgWalkAway);
+            _percentLoss = ((float)_totalWinnings / (float)_totalWagered).ToString("0.00%");
+            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, 0, _avgBet, _avgWalkAwayMoney);
 
         }
 
         private int CalculateWinnings(int numberRolled, int currentBalance)
         {
+
             foreach (BettingTier bt in BettingSystem.BettingTiers)
             {
+                if (!bt.IsActive)
+                    continue;
                 foreach (BettingPattern bp in bt.BettingPatterns)
                 {
-                    _avgBet += bp.TotalBet;
+                    _totalWagered += bp.TotalBet;
                     foreach (KeyValuePair<Wager, int> kp in bp.Wagers)
                     {
                         if (kp.Value == 0)

@@ -42,16 +42,16 @@ namespace Roulette_Simulator_2.Controllers
             //simulation.TotalBet = 270;
 
 
-            bets[Wager.X02_Doz_1] = 15;
-            bets[Wager.X02_Doz_3] = 15;
-            bets[Wager.X08_13_14_16_17] = 5;
-            bets[Wager.X08_17_18_20_21] = 5;
-            bets[Wager.X08_19_20_22_23] = 5;
+            bets[Wager.X02_Doz_1] = 30;
+            bets[Wager.X02_Doz_3] = 30;
+            bets[Wager.X08_13_14_16_17] = 10;
+            bets[Wager.X08_17_18_20_21] = 10;
+            bets[Wager.X08_19_20_22_23] = 10;
 
             #endregion
 
             List<BettingPattern> bettingPatterns = new List<BettingPattern>();
-            bettingPatterns.Add(new BettingPattern(bets, 45));
+            bettingPatterns.Add(new BettingPattern(bets, 90));
 
             simulation.BettingSystem.BettingTiers.Add(new BettingTier(bettingPatterns));
 

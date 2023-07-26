@@ -80,7 +80,7 @@ namespace RouletteSimulator.Classes
                 }
                 _totalSpins += spins;
                 _totalWinnings += _currentBalance - _startingBalance;
-
+                _avgWalkAwayMoney += _currentBalance;
             }
             if (_wins > 0)
                 avgSpinsWin /= _wins;

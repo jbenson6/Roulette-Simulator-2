@@ -70,7 +70,11 @@ namespace RouletteSimulator.Classes
                 int spins = 0;
                 bool isChamba = false;
                 bool chambaLoss = false;
-                while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold)
+                int maxBet = Math.Max(BettingSystem.BettingTiers[0].BettingPatterns[0].TotalBet, 
+                    BettingSystem.BettingTiers[1].BettingPatterns[0].TotalBet);
+
+                while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold
+                    && _currentBalance >= maxBet)
                 {
                     spins++;
                     int numberRolled = random.Next(0, lastIndex);
@@ -89,19 +93,21 @@ namespace RouletteSimulator.Classes
                         else
                         {
                             //Leave After Losing Chamba
-                            //_losses++;
-                            //avgSpinsLoss += spins;
-                            //_totalWinnings += _currentBalance - _startingBalance;
-                            //chambaLoss = true;
-                            //_chambaLosses++;
-                            //_avgWalkAwayMoney += _currentBalance;
-                            //_totalSpins += spins;
-                            //break;
+                            _losses++;
+                            avgSpinsLoss += spins;
+                            _totalWinnings += _currentBalance - _startingBalance;
+                            chambaLoss = true;
+                            _chambaLosses++;
+                            _avgWalkAwayMoney += _currentBalance;
+                            _totalSpins += spins;
+                            _quickestLoss = Math.Min(_quickestLoss, spins);
+                            _longestLoss = Math.Max(_longestLoss, spins);
+                            break;
 
                             //Go Back to Comp
-                            isChamba = false;
-                            BettingSystem.BettingTiers[0].IsActive = true;
-                            BettingSystem.BettingTiers[1].IsActive = false;
+                            //isChamba = false;
+                            //BettingSystem.BettingTiers[0].IsActive = true;
+                            //BettingSystem.BettingTiers[1].IsActive = false;
                         }
                     }
                     else
@@ -116,7 +122,7 @@ namespace RouletteSimulator.Classes
                 }
                 if (chambaLoss)
                     continue;
-                if (_currentBalance <= _losingThreshold)
+                if (_currentBalance <= _losingThreshold || _currentBalance < maxBet)
                 {
                     _losses++;
                     avgSpinsLoss += spins;
@@ -142,7 +148,7 @@ namespace RouletteSimulator.Classes
 
             _percentSuccess = ((float)_wins / (float)_desiredTrials).ToString("0.00%");
             _percentLoss = ((float)_totalWinnings / (float)_totalWagered).ToString("0.00%");
-            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, 0, _avgBet, _avgWalkAwayMoney, _quickestLoss, _longestLoss);
+            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, _chambaLosses, _avgBet, _avgWalkAwayMoney, _quickestLoss, _longestLoss);
 
         }
 

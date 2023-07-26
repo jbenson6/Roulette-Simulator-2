@@ -17,6 +17,10 @@ namespace RouletteSimulator.Classes
         private string _percentSuccess;
         private string _percentLoss;
         private int _totalBet;
+        private int _chambaLosses;
+        private double _avgBet;
+        private double _avgWalkAwayMoney;
+        private long _totalSpins;
         int[] Red = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
         int[] Black = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
 
@@ -40,6 +44,10 @@ namespace RouletteSimulator.Classes
             _losses = 0;
             _totalWagered = 0;
             _totalWinnings = 0;
+            _chambaLosses = 0;
+            _avgBet = 0;
+            _avgWalkAwayMoney = 0;
+            _totalSpins = 0;
 
             int lastIndex;
             if (BettingSystem.WheelType == WheelType.DoubleZero)
@@ -55,24 +63,66 @@ namespace RouletteSimulator.Classes
                 Random random = new Random();
                 int _currentBalance = _startingBalance;
                 int spins = 0;
-
+                bool isChamba = false;
+                bool chambaLoss = false;
                 while (_currentBalance < _winningThreshold && _currentBalance > _losingThreshold)
                 {
                     spins++;
                     int numberRolled = random.Next(0, lastIndex);
+                    int lastRollBalance = _currentBalance;
                     _currentBalance = CalculateWinnings(numberRolled, _currentBalance);
+
+                    //if loss, switch to chamba
+                    if(_currentBalance < lastRollBalance)
+                    {
+                        if (!isChamba)
+                        {
+                            isChamba = true;
+                            BettingSystem.BettingTiers[0].IsActive = false;
+                            BettingSystem.BettingTiers[1].IsActive = true;
+                        }
+                        else
+                        {
+                            //Leave After Losing Chamba
+                            //_losses++;
+                            //avgSpinsLoss += spins;
+                            //_totalWinnings += _currentBalance - _startingBalance;
+                            //chambaLoss = true;
+                            //_chambaLosses++;
+                            //_avgWalkAwayMoney += _currentBalance;
+                            //_totalSpins += spins;
+                            //break;
+
+                            //Go Back to Comp
+                            isChamba = false;
+                            BettingSystem.BettingTiers[0].IsActive = true;
+                            BettingSystem.BettingTiers[1].IsActive = false;
+                        }
+                    }
+                    else
+                    {
+                        if (isChamba)
+                        {
+                            isChamba = false;
+                            BettingSystem.BettingTiers[0].IsActive = true;
+                            BettingSystem.BettingTiers[1].IsActive = false;
+                        }
+                    }
                 }
+                if (chambaLoss)
+                    continue;
                 if (_currentBalance <= _losingThreshold)
                 {
                     _losses++;
                     avgSpinsLoss += spins;
+
                 }
                 else if (_currentBalance >= _winningThreshold)
                 {
                     _wins++;
                     avgSpinsWin += spins;
                 }
-
+                _totalSpins += spins;
                 _totalWinnings += _currentBalance - _startingBalance;
 
             }
@@ -80,20 +130,26 @@ namespace RouletteSimulator.Classes
                 avgSpinsWin /= _wins;
             if(_losses > 0)
                 avgSpinsLoss /= _losses;
-          
+
+            _avgBet = _totalWagered / _totalSpins;
+            _avgWalkAwayMoney /= _desiredTrials;
+
             _percentSuccess = ((float)_wins / (float)_desiredTrials).ToString("0.00%");
             _percentLoss = ((float)_totalWinnings / (float) _totalWagered).ToString("0.00%");
-            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss);
+            return new SimulationResults(_desiredTrials, _totalWinnings, _totalWagered, _percentLoss, _wins, _losses, _percentSuccess, avgSpinsWin, avgSpinsLoss, _chambaLosses, _avgBet, _avgWalkAwayMoney);
 
         }
 
         private int CalculateWinnings(int numberRolled, int currentBalance)
         {
-            _totalWagered += TotalBet;
+            
             foreach (BettingTier bt in BettingSystem.BettingTiers)
             {
+                if (!bt.IsActive)
+                    continue;
                 foreach (BettingPattern bp in bt.BettingPatterns)
                 {
+                    _totalWagered += bp.TotalBet;
                     foreach (KeyValuePair<Wager, int> kp in bp.Wagers)
                     {
                         if (kp.Value == 0)

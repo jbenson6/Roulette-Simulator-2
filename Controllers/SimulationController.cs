@@ -25,7 +25,9 @@ namespace Roulette_Simulator_2.Controllers
 
             //Populate Wagers to 0
             Dictionary<Wager, int> bets = new Dictionary<Wager, int>();
-            foreach(Wager wager in Enum.GetValues(typeof(Wager)))
+            Dictionary<Wager, int> betsChamba = new Dictionary<Wager, int>();
+
+            foreach (Wager wager in Enum.GetValues(typeof(Wager)))
             {
                 bets.Add(wager, 0);
             }
@@ -47,14 +49,36 @@ namespace Roulette_Simulator_2.Controllers
             bets[Wager.X08_13_14_16_17] = 5;
             bets[Wager.X08_17_18_20_21] = 5;
             bets[Wager.X08_19_20_22_23] = 5;
-            simulation.TotalBet = 45;
 
             #endregion
 
             List<BettingPattern> bettingPatterns = new List<BettingPattern>();
-            bettingPatterns.Add(new BettingPattern(bets));
+            bettingPatterns.Add(new BettingPattern(bets, 45));
+
 
             simulation.BettingSystem.BettingTiers.Add(new BettingTier(bettingPatterns));
+
+            List<BettingPattern> bettingPatternsChamba = new List<BettingPattern>();
+
+            foreach (Wager wager in Enum.GetValues(typeof(Wager)))
+            {
+                betsChamba.Add(wager, 0);
+            }
+
+            //Chamba
+            //betsChamba[Wager.X02_Doz_1] = 100;
+            //betsChamba[Wager.X02_Doz_2] = 100;
+            //betsChamba[Wager.X05_25_26_27_28_29_30] = 50;
+            //bettingPatternsChamba.Add(new BettingPattern(betsChamba, 250));
+
+            //Romanovsky
+            betsChamba[Wager.X02_Doz_1] = 150;
+            betsChamba[Wager.X02_Doz_2] = 150;
+            betsChamba[Wager.X08_25_26_28_29] = 50;
+            betsChamba[Wager.X08_32_33_35_36] = 50;
+            bettingPatternsChamba.Add(new BettingPattern(betsChamba, 400));
+
+            simulation.BettingSystem.BettingTiers.Add(new BettingTier(bettingPatternsChamba, false));
 
             SimulationResults results = simulation.PerformSimulation();
 

@@ -195,6 +195,20 @@ namespace RouletteSimulator.Classes
                             else
                                 currentBalance += kp.Value;
                         }
+                        else if (values[0] == "High")
+                        {
+                            if (numberRolled > 19 && numberRolled < 37)
+                                currentBalance += kp.Value;
+                            else
+                                currentBalance -= kp.Value;
+                        }
+                        else if (values[0] == "Low")
+                        {
+                            if (numberRolled >  0 && numberRolled < 19)
+                                currentBalance += kp.Value;
+                            else
+                                currentBalance -= kp.Value;
+                        }
                         else if (values.Contains(numberRolled.ToString()))
                         {
                             string multiplier = kp.Key.ToString().Substring(1, 2);

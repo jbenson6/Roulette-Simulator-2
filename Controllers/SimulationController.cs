@@ -42,10 +42,15 @@ namespace Roulette_Simulator_2.Controllers
             //simulation.TotalBet = 270;
 
 
-            bets[Wager.X02_Doz_1] = 30;
-            bets[Wager.X02_Doz_3] = 30;
-            bets[Wager.X08_13_14_16_17] = 10;
-            bets[Wager.X08_17_18_20_21] = 10;
+            //bets[Wager.X02_Doz_1] = 30;
+            //bets[Wager.X02_Doz_3] = 30;
+            //bets[Wager.X08_13_14_16_17] = 10;
+            //bets[Wager.X08_17_18_20_21] = 10;
+            //bets[Wager.X08_19_20_22_23] = 10;
+
+            bets[Wager.X35_0] = 3;
+            bets[Wager.X01_Low] = 46;
+            bets[Wager.X02_Doz_3] = 31;
             bets[Wager.X08_19_20_22_23] = 10;
 
             #endregion
